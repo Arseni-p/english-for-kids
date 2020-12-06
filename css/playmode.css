@@ -1,0 +1,188 @@
+:root {
+  --red: #dc3545;
+  --redlight: #f16a78;
+  --green: #28a745;
+  --teal: #20c997;
+  --tealdark: #168d69; 
+  --blue: #007bff;
+  --bluelight: #93c4f8;
+  --cyan: #17a2b8;
+  --cyanlight: #d1ecf1;
+  --yellow: #ffc107;
+  --yellowlight: #ffdd78;
+}
+
+.card__item.playmode {
+  position: relative;
+  border-color: var(--cyanlight);
+  background-size: 200px auto;
+  transition: border-color 0.3s linear;
+}
+
+.card__item.playmode .item__image {
+  background-size: 200px auto;
+  transition: background-size 0.5s linear; 
+}
+
+.card__item.playmode .item__value {
+  position: absolute;
+  left: 0;
+  bottom: -105%;
+  transition: bottom 0.5s linear;
+}
+
+
+.card__item.correct__item {
+  box-shadow: 0 0 20px 0 grey;
+  background-color: grey;
+  border: none;
+  transform: scale(0.9);
+  opacity: 0.6;
+  transition: all 0.5s ease-in-out;
+}
+
+.card__item.correct__item:hover {
+  cursor: not-allowed;
+}
+
+.play-btn.repeat__on {
+  background-image: url('../assets/img/mainpage/repeat-btn-white.png');  
+  background-color: var(--teal);
+  transition: background-color 0.5s linear;
+}
+
+.play-btn.repeat__on:hover {
+  background-color: var(--tealdark);
+  transition: background-color 0.5s linear;
+}
+
+.points {
+  position: relative;
+}
+
+.points__wrapper {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  min-width: 100%;
+  max-width: auto;
+  height: 100%;
+}
+
+.star {
+  width: 35px;
+  height: 35px;
+  margin-right: 5px;
+  background-image: url('../assets/img/game/star-correct.png');
+  background-repeat: no-repeat;
+  background-size: 30px auto;
+  background-position: center;
+  transition: all 0.5s linear;
+}
+
+.star__error {
+  background-image: url('../assets/img/game/star-error.png');
+}
+
+.star:last-child{
+  margin-right: auto
+}
+
+.final-message {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  padding-top: 10px;
+  z-index: 200;
+  background-repeat: no-repeat;
+  background-size: 400px auto;
+  background-position: center -500px; 
+}
+
+@keyframes blackout-on {
+  from {background-color: transparent};
+  to {background-color: var(--cyan)}
+}
+
+@keyframes blackout-off {
+  from {background-color: var(--cyan)}
+  to {background-color: transparent};
+}
+
+.final-message__on {
+  display: block;
+  background-color: var(--cyan);
+  animation: blackout-on 3s linear;
+   
+}
+
+@keyframes result-on {
+  from {background-position: center -500px;}
+  to {background-position: center 80px;}
+}
+
+.success,
+.failure {
+  background-position: center 80px;
+  animation: result-on 3s linear;
+}
+
+.success {
+  background-image: url('../assets/img/game/smile-success.png');
+}
+
+.failure {
+  background-image: url('../assets/img/game/smile-failure.png');
+}
+
+.final-message__off {
+  background-color: transparent;
+  background-position-y: -500px;
+  transition: background-position-y 3s linear;
+  animation: blackout-off 3s linear;
+}
+
+.final__text {
+  margin: 0 auto;
+  padding: 10px 0;
+  width: 300px;
+  font-family: 'Cabin Sketch', Arial, cursive, sans-serif;
+  font-size: 24px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  opacity: 0;
+  border: 4px solid #000;
+  border-left: none;
+  border-right: none;
+  border-radius: 20px 80px 80px 80px / 10px 40px 20px 50px;
+  z-index: 300;
+}
+
+.mistakes__count {
+  display: inline-block;
+  margin-right: 5px;
+  min-width: 30px;
+  font-weight: bold;
+}
+
+.final-message__on .final__text {
+  opacity: 1;
+  transition: opacity 3s linear;
+}
+
+.final-message__off .final__text {
+  opacity: 0;
+  transition: opacity 3s linear;
+}
+
+
+@media(max-width: 540px) {
+  .final-message__on {
+    background-size: 300px auto; 
+  }
+}

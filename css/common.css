@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url('../assets/img/mainpage/bg-efk-3.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 0;
+}
+
+body,
+button {
+  font-family: 'Neucha', Arial, sans-serif;
+  font-size: 20px;
+  color: black;
+  outline: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover,
+button:hover {
+  cursor: pointer;
+}
+
+a:active,
+button:active {
+  cursor: pointer;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.header,
+.container,
+.footer {
+  margin: 0 auto;
+  min-width: 320px;
+  max-width: 1200px;
+}
+
+
+@media(max-width: 540px) {
+  body {
+    background-position: 0 0;
+  }
+
+  .page-title {
+    font-size: 35px;
+  }
+}

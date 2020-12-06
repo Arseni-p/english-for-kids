@@ -1,0 +1,203 @@
+:root {
+  --red: #dc3545;
+  --redlight: #f16a78;
+  --green: #28a745;
+  --teal: #20c997;
+  --blue: #007bff;
+  --bluelight: #93c4f8;
+  --cyan: #17a2b8;
+  --cyanlight: #d1ecf1;
+  --yellow: #ffc107;
+  --yellowlight: #ffdd78;
+}
+
+
+.container {
+  padding: 0;
+  padding-right: 0;
+  min-height: 718px;
+}
+
+.page-title {
+  margin: 0 auto;
+  padding: 10px;
+  min-width: 300px;
+  max-width: 1100px;
+  font-family: 'Cabin Sketch', Arial, cursive, sans-serif;
+  font-size: 50px;
+  line-height: 50px;
+  font-weight: normal;
+  text-align: center;
+  color: var(--blue);
+}
+
+.page-title.main-page__title {
+  margin-bottom: 50px;
+}
+
+.points {
+  width: calc(100% - 140px);
+  height: 40px;
+  margin-left: 40px;
+  margin-bottom: 10px;
+}
+
+.main-menu__list,
+.card__list {
+  display: flex;
+  justify-content: space-around;
+  flex-flow: row wrap;
+  margin-left: 20px;
+}
+
+.card__item {
+  margin-right: 20px;
+  margin-bottom: 40px;
+  width: 250px;
+
+  border: 2px solid var(--cyan);
+  border-radius: 20px 80px 20px 40px / 50px 30px 50px 30px;
+
+  overflow: hidden;
+  box-shadow: none;
+  transform: translateY(0);
+
+  transition: box-shadow 0.1s linear, transform 0.3s linear;
+}
+
+
+.card__item:hover {
+  box-shadow: 0 10px 7px 0 var(--cyanlight);
+  transform: translateY(-10px);
+  cursor: pointer;
+
+  transition: box-shadow 0.3s linear, transform 0.3s linear;
+}
+
+.card__item:active {
+  box-shadow: 0 10px 7px 0 var(--cyan);
+
+  transition: box-shadow 0.1s linear;
+}
+
+.item__link {
+  display: flex;
+  flex-direction: column;
+}
+
+.item__image {
+  width: 100%;
+  height: 200px;
+
+  background-color: rgba(255, 255, 255, 0.5);
+  background-repeat: no-repeat;
+  background-size: 150px auto;
+  background-position: center;
+  transition: background-size 0.3s linear;
+}
+
+.card__item:nth-child(5) .item__image {
+  background-size: auto 150px;
+}
+
+
+.item__image--word,
+.card__item:nth-child(5) .item__image--word {
+  position: relative;
+  height: 250px;
+  background-size: 150px auto;
+  background-position: center 20px;
+}
+
+
+
+.item__value {
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  line-height: 50px;
+
+  background-color: var(--teal);
+  opacity: background-color 0.3s linear;
+  transition: bottom 0.3s linear
+}
+
+.item__image--word .item__value {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.item__reverse-btn {
+  position: absolute;
+  top: 10px;
+  right: -50px;
+  width: 100px;
+  height: 100px;
+
+  border-radius: 50%;
+
+  background-color: var(--yellow);
+  background-image: url('../assets/img/mainpage/arrow-reverse.png');
+  background-repeat: no-repeat;
+  background-position: 18px 14px;
+  background-size: 18px auto;
+
+  z-index: 50;
+  box-shadow: 0 0 0 2px var(--yellow);
+  transition: background-color 0.2s linear, opacity 0.5s ease-in-out;
+}
+
+.item__reverse-btn:hover {  
+  background-color: var(--yellowlight);
+  box-shadow: 0 0 0 2px var(--yellowlight);
+  transition: background-color 0.2s linear, box-shadow 0.2s linear;
+}
+
+.item__reverse-btn:active {
+  box-shadow: 0 0 0 2px var(--yellowlight);
+  background-color: transparent;
+  transition: background-color 0.2s linear/*, box-shadow 0.1s linear*/;
+}
+
+
+@keyframes item__on {
+  0% {opacity: 0};
+  50% {opacity: 0}
+  100% {opacity: 1}
+}
+
+@keyframes item__off {
+  from {opacity: 1};
+  to {opacity: 0}
+}
+
+.item__on {
+  opacity: 1;
+  animation: item__on 0.7s linear;
+}
+
+.item__off {
+  opacity: 0;
+  animation: item__off 0.3s linear;
+}
+
+.card__item--reverse,
+.card__item--reverse:hover,
+.card__item--reverse .item__image {
+  transform: rotateY(180deg);
+}
+
+.card__item .item__reverse-btn {
+  opacity: 1;
+  animation: item__on 0.5s linear;
+}
+
+.card__item--reverse .item__reverse-btn {
+  display: none;
+}
