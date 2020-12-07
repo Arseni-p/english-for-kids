@@ -1,10 +1,8 @@
-'use strict';
-
 export class Cards {
   constructor(name, cardsList) {
     this.name = name;
     this.cardsList = cardsList;
-  }
+  };
 
   init() {
     const cardNumber = 8;
@@ -24,7 +22,7 @@ export class Cards {
       setTimeout(() => {
         playBtn.classList.remove('play-btn__off')
       }, 250)
-    }
+    };
 
     if (currPageTitle === 'yummy') {
       currPageTitle = 'yummy!'
@@ -50,10 +48,10 @@ export class Cards {
     mainMenuList.classList.add('item__on');
     mainContainer.append(mainMenuList);
 
-    let indexOfItem = this.cardsList[0].indexOf(this.name) + 1;
-    let itemArray = this.cardsList[indexOfItem];
+    const indexOfItem = this.cardsList[0].indexOf(this.name) + 1;
+    const itemArray = this.cardsList[indexOfItem];
 
-    for (let i = 0; i < cardNumber; i++) {
+    for (let i = 0; i < cardNumber; i += 1) {
       const cardItem = document.createElement('li');
       cardItem.className = 'card__item';
       mainMenuList.append(cardItem);

@@ -1,6 +1,4 @@
-'use strict';
-
-export let gameStart = () => {
+export const gameStart = () => {
   const switcherElement = document.querySelector('input[type=checkbox]');
   const playMode = document.querySelector('.play-mode');
   const trainMode = document.querySelector('.train-mode');
@@ -8,9 +6,8 @@ export let gameStart = () => {
   switcherElement.addEventListener('change', () => {
     const cardList = document.querySelectorAll('.card__item');
     const playBtn = document.querySelector('.play-btn');
-    let correctItems = document.querySelectorAll('.correct__item');
-    let starsList = document.querySelector('.points__wrapper');
-    const itemValueList = document.querySelectorAll('.item__value');
+    const correctItems = document.querySelectorAll('.correct__item');
+    const starsList = document.querySelector('.points__wrapper');
 
     if ( starsList.querySelector('.star') ) {
       starsList.innerHTML = '';

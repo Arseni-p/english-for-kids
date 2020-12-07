@@ -1,12 +1,10 @@
-'use strict';
-
-export let reverseMode = (event, cardsList, hashItem) => {
+export const reverseMode = (event, cardsList, hashItem) => {
   let cardItem;
   let cardNameWrap ;
   let cardName;
   let currEnglCard;
   let reverseMode = false;
-  let reverseBtn = event.target.classList.contains('item__reverse-btn');
+  const reverseBtn = event.target.classList.contains('item__reverse-btn');
   
   if (event.target.closest('.item__value')) {
     cardNameWrap = event.target.closest('.item__value');
@@ -14,8 +12,8 @@ export let reverseMode = (event, cardsList, hashItem) => {
     currEnglCard = cardName.textContent;
   }
   
-  let indexOfItem = cardsList[0].indexOf(hashItem) + 1;
-  let itemArray = cardsList[indexOfItem];
+  const indexOfItem = cardsList[0].indexOf(hashItem) + 1;
+  const itemArray = cardsList[indexOfItem];
 
   if ( reverseBtn ) {
     cardItem = event.target.closest('.card__item');

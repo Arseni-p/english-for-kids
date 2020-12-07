@@ -58,6 +58,7 @@
 
 .points {
   position: relative;
+  overflow: hidden;
 }
 
 .points__wrapper {

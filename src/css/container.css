@@ -71,7 +71,7 @@
   transform: translateY(-10px);
   cursor: pointer;
 
-  transition: box-shadow 0.3s linear, transform 0.3s linear;
+  transition: box-shadow 0.3s linear, transform 0.5s linear;
 }
 
 .card__item:active {

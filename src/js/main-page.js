@@ -1,6 +1,4 @@
-'use strict'
-
-export let itemsTitle = [
+export const itemsTitle = [
   {
     'imageUrl': 'icon-colors.png',
     'title': 'colors',
@@ -35,10 +33,12 @@ export let itemsTitle = [
   },
 ]
 
-export let mainPage = () => {
+export const mainPage = () => {
   const cardNumber = 8;
-  const switcher = document.getElementById('doggo').setAttribute('disabled', 'disabled');
-  const playMode = document.getElementById('doggo').checked = false;
+  const switcher = document.getElementById('doggo');
+  switcher.setAttribute('disabled', 'disabled');
+  const playMode = document.getElementById('doggo')
+  playMode.checked = false;
   const playBtnOn = document.querySelector('.play-btn__on');
   const mainContainer = document.querySelector('.container');
   const pageTitle = document.querySelector('.page-title');
@@ -57,7 +57,7 @@ export let mainPage = () => {
   mainContainer.append(mainMenuList);
 
 
-  for (let i = 0; i < cardNumber; i++) {
+  for (let i = 0; i < cardNumber; i += 1) {
     const cardItem = document.createElement('li');
     cardItem.className = 'card__item';
     mainMenuList.append(cardItem);

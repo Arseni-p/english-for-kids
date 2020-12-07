@@ -1,17 +1,15 @@
-'use strict'
-
-export let playModeOn = (correctChoice) => {
+export const playModeOn = () => {
   const playBtn = document.querySelector('.play-btn');
   if (!playBtn.classList.contains('repeat__on')) {
     playBtn.classList.add('repeat__on');
   }
 }
 
-export let playChoiceSound = (correctChoice) => {
+export const playChoiceSound = (correctChoice) => {
   const pointsArea = document.querySelector('.points__wrapper');
   
   function createStar() {
-    let star = document.createElement('span');
+    const star = document.createElement('span');
     star.className = 'star';
     pointsArea.append(star);
 
@@ -20,7 +18,7 @@ export let playChoiceSound = (correctChoice) => {
     }
   }
 
-  let playError = new Audio;
+  const playError = new Audio;
   if ( playError.canPlayType('audio/mpeg') === 'probably' ) {
     playError.src = '../assets/sound/game/error.mp3'
   }
@@ -29,7 +27,7 @@ export let playChoiceSound = (correctChoice) => {
     playError.play();
   }
 
-  let playCorrect = new Audio;
+  const playCorrect = new Audio;
   if ( playCorrect.canPlayType('audio/mpeg') === 'probably' ) {
     playCorrect.src = '../assets/sound/game/correct.mp3'
   }
@@ -38,7 +36,7 @@ export let playChoiceSound = (correctChoice) => {
     playCorrect.play();
   }
 
-  let correctItem = event.target.closest('.card__item');
+  const correctItem = event.target.closest('.card__item');
 
   if ( correctChoice ) {
     playCorrectOn();
@@ -51,7 +49,7 @@ export let playChoiceSound = (correctChoice) => {
   createStar();
 }
 
-export let gameFinal = (mistakes) => {
+export const gameFinal = (mistakes) => {
   const finalMessage = document.querySelector('.final-message');
   const mistakesCount = document.querySelector('.mistakes__count');
   const plural = document.querySelector('.plural');
@@ -63,7 +61,7 @@ export let gameFinal = (mistakes) => {
 
   mistakesCount.textContent = mistakes;
   finalMessage.classList.add('final-message__on');
-  let finalSound = new Audio ;
+  const finalSound = new Audio ;
 
   if ( mistakes > 0 ) {
     finalMessage.classList.add('failure');

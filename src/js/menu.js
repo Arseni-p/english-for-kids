@@ -1,13 +1,9 @@
-'use strict';
-
-export let menuFunc = () => {
+export const menuFunc = () => {
   const menuBtn = document.querySelector('.menu-btn');
   const menuBtnText = document.querySelector('.menu-btn__text');
   const topLine = document.querySelector('.btn__top-line');
   const bottomLine = document.querySelector('.btn__btm-line');
   const menuList = document.querySelector('.menu__list');
-  const menuItemLink = document.querySelectorAll('.menu__link')
-
   
   function menuOff() {
     if (menuBtn.classList.contains('menu-off')) {
@@ -43,7 +39,7 @@ export let menuFunc = () => {
         menuList.classList.remove('menu__list--off');
       }, 1500)
     }
-  }
+  };
   
   menuBtn.addEventListener('click', () => {
     menuOff();

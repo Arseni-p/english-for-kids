@@ -1,15 +1,24 @@
-'use strict';
+import './css/burger-menu.css';
+import './css/common.css';
+import './css/container.css';
+import './css/footer.css';
+import './css/header.css';
+import './css/playmode.css';
+import './css/start-page.css';
+import './css/switcher.css';
+import './css/stats.css';
+
 
 import { menuFunc } from './js/menu.js';
 import { gameStart } from './js/game-start.js';
 import { mainPage } from './js/main-page.js';
 import { Cards } from './js/cards-init.js';
 import { cardsList } from './js/cards-list.js';
+import { statsList } from './js/stats-list.js';
 import { reverseMode } from './js/reverse-mode.js';
 import { trainMode } from './js/train-mode.js';
-import { playModeOn } from './js/play-mode.js';
-import { playChoiceSound } from './js/play-mode.js';
-import { gameFinal } from './js/play-mode.js';
+import { playModeOn , playChoiceSound , gameFinal } from './js/play-mode.js';
+import { initStats } from './js/stats.js';
 
 const mainContainer = document.querySelector('.container');
 const pageTitle = document.querySelector('.page-title');
@@ -17,9 +26,9 @@ const playBtn = document.getElementById('doggo');
 const playBtnOn = document.querySelector('.play-btn');
 const pointsLimit = 8;
 
-let randomIndex = [0, 1, 2, 3, 4, 5, 6, 7]
-let indexArray = [];
-let soundsArray = [];
+const randomIndex = [0, 1, 2, 3, 4, 5, 6, 7]
+const indexArray = [];
+const soundsArray = [];
 let playMode = false;
 let playModeSound = false;
 let points = 0;
@@ -30,19 +39,22 @@ let correctChoice;
 let indexOfTheme;
 let themeArray;
 
-let hashUpdate = () => {
-  return hashItem = location.hash.slice(1);
-}
+const hashUpdate = () => hashItem = location.hash.slice(1)
 
-let cardListView = () => {
+const cardListView = () => {
   hashUpdate();
-  if (hashItem === 'main-page' || hashItem === '') {
+  if ( (hashItem === 'main-page' || hashItem === '') || hashItem === 'stats') {
     if ( document.querySelector('.points') ) {
       document.querySelector('.points').remove();
     };
-    mainPage();
+    if ( hashItem === 'main-page' || hashItem === '' ) {
+      mainPage();
+    };
+    if ( hashItem === 'stats' ) {
+      initStats(statsList);
+    }
   } else {
-    let wordsList = new Cards(hashItem, cardsList);
+    const wordsList = new Cards(hashItem, cardsList);
     setTimeout(() => {
       wordsList.init();
     }, 500)
@@ -51,9 +63,9 @@ let cardListView = () => {
   let currentLink = document.querySelector('.current__link');
   if ( currentLink ) {
     currentLink.classList.remove('current__link');
-    let menuLinkList = document.querySelectorAll('.menu__link');
-    let arrMenu = document.querySelectorAll('.menu__link');
-    let arrMenuContent = [];
+    const menuLinkList = document.querySelectorAll('.menu__link');
+    const arrMenu = document.querySelectorAll('.menu__link');
+    const arrMenuContent = [];
     arrMenu.forEach(item => {
       arrMenuContent.push(item.textContent.toLocaleLowerCase())
     })
@@ -67,10 +79,10 @@ let cardListView = () => {
   }
 }
 
-let playSound = (hashItem, soundUrl) => {
+const playSound = (hashItem, soundUrl) => {
   hashItem = hashUpdate();
   soundUrl = soundsArray[currentWord];
-  let playSoundOn = new Audio;
+  const playSoundOn = new Audio;
 
   if ( playSoundOn.canPlayType('audio/mpeg') === 'probably' ) {
     playSoundOn.src = `../assets/sound/${hashItem}/${soundUrl}`
@@ -90,16 +102,28 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 window.addEventListener('hashchange', () => {
-  document.querySelector('.card__list').classList.add('item__off');
+  const currList = document.querySelector('.card__list');
+  const currStats = document.querySelector('.stats__wrapper');
+  if (currList) {
+    currList.classList.add('item__off');
+  };
+  if (currStats) {
+    currStats.classList.add('item__off');
+  };
   if (playBtnOn.classList.contains('repeat__on')) {
     playBtnOn.classList.remove('repeat__on');
-  } 
+  };
+  
   playModeSound = false;
+  mistakes = 0;
   hashUpdate();
 
   setTimeout(() => {
-    if (document.querySelector('.card__list')) {
-      document.querySelector('.card__list').remove();
+    if (currList) {
+      currList.remove();
+    };
+    if (currStats) {
+      currStats.remove();
     };
     if (document.querySelector('.points')) {
       document.querySelector('.points').remove();
@@ -112,17 +136,16 @@ window.addEventListener('hashchange', () => {
 
 mainContainer.addEventListener('click', (event) => {
   hashUpdate();
-  let currentCard = event.target.closest('.card__item').querySelector('.item__value--text').textContent;
-  let choiceItem = event.target.closest('.card__item');
+  const currentCard = event.target.closest('.card__item').querySelector('.item__value--text').textContent;
+  const choiceItem = event.target.closest('.card__item');
 
   if ( !playMode ) {
     reverseMode(event, cardsList, hashItem);
     trainMode(event, cardsList, hashItem)
-  } else {
-    if ( playModeSound && currentCard === indexArray[currentWord] && !choiceItem.classList.contains('correct__item') ) {
+  } else if ( playModeSound && currentCard === indexArray[currentWord] && !choiceItem.classList.contains('correct__item') ) {
       correctChoice = true;
-      points++;
-      currentWord++;
+      points += 1;
+      currentWord += 1;
       playChoiceSound(correctChoice);
 
       setTimeout(() => {
@@ -140,11 +163,10 @@ mainContainer.addEventListener('click', (event) => {
     } else {
       correctChoice = false;
       if ( document.querySelector('.repeat__on') && !choiceItem.classList.contains('correct__item') ) {
-        mistakes++;
+        mistakes += 1;
         playChoiceSound(correctChoice);
       }
     }
-  }
 });
 
 playBtn.addEventListener('click', () => {
@@ -171,10 +193,9 @@ playBtnOn.addEventListener('click', () => {
     randomIndex.forEach(item => {
       soundsArray[i] = themeArray[item].sound;
       indexArray[i] = themeArray[item].word;
-      i++;
+      i += 1;
     })
     playModeSound = true;
-    console.log(indexOfTheme, themeArray, soundsArray, indexArray);
   }
   playSound();
 })

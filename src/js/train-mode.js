@@ -1,10 +1,8 @@
-'use strict'
-
-export let trainMode = (event, cardsList, hashItem) => {
-  let cardItem = event.target.closest('.card__item');
-  let cardName = cardItem.querySelector('.item__value--text').textContent;
-  let indexOfItem = cardsList[0].indexOf(hashItem) + 1;
-  let itemArray = cardsList[indexOfItem];
+export const trainMode = (event, cardsList, hashItem) => {
+  const cardItem = event.target.closest('.card__item');
+  const cardName = cardItem.querySelector('.item__value--text').textContent;
+  const indexOfItem = cardsList[0].indexOf(hashItem) + 1;
+  const itemArray = cardsList[indexOfItem];
   let soundUrl;
   
   itemArray.forEach(item => {
@@ -13,8 +11,8 @@ export let trainMode = (event, cardsList, hashItem) => {
     }
   })
 
-  let soundPlay = () => {
-    let wordSound = new Audio;
+  const soundPlay = () => {
+    const wordSound = new Audio;
 
     if ( wordSound.canPlayType('audio/mpeg') === 'probably' ) {
       wordSound.src = `../assets/sound/${hashItem}/${soundUrl}`
