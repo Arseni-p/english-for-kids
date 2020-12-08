@@ -4,7 +4,6 @@ export const initStats = (statsList, storageName) => {
   if (localStorage.getItem(storageName)) {
     let storageValue = localStorage.getItem(storageName);
     statsList = JSON.parse(storageValue);
-    console.log(statsList)
   }
   
   const buttonsNumber = 2;
@@ -38,27 +37,34 @@ export const initStats = (statsList, storageName) => {
     switch(num) {
       case 1:
         item.textContent = statsList[index - 1].word;
+        item.classList.add('word');
         break;
       case 2:
         item.textContent = statsList[index - 1].translation;
+        item.classList.add('translation');
         break;
       case 3:
         item.textContent = statsList[index - 1].category;
+        item.classList.add('category');
         break;
       case 4:
         item.textContent = statsList[index - 1].train;
+        item.classList.add('train__count');
         item.classList.add('stats__count');
         break;
       case 5:
         item.textContent = statsList[index - 1].correct;
+        item.classList.add('correct__count');
         item.classList.add('stats__count');
         break;
       case 6:
         item.textContent = statsList[index - 1].mistakes;
+        item.classList.add('fail__count');
         item.classList.add('stats__count');
         break;
       case 7:
         item.textContent = statsList[index - 1].percentage;
+        item.classList.add('percentage__count');
         item.classList.add('stats__count--percentage');
         break;
     }
@@ -87,17 +93,18 @@ export const initStats = (statsList, storageName) => {
 
   for (let i = 0; i < totalRows; i += 1) {
     const tableRow = document.createElement('tr');
-    tableRow.classList = 'table__row';
+    tableRow.className = 'table__row';
     statsTable.append(tableRow);
 
     for (let j = 0; j < totalCells; j += 1) {
       let tableCell;
       if (i === 0) {
         tableCell = document.createElement('th');
+        tableCell.classList.add('table__head');
       } else {
         tableCell = document.createElement('td')
       };
-      tableCell.classList = 'table__cell';
+      tableCell.classList.add('table__cell');
       tableRow.append(tableCell);
 
       if (i === 0) {
@@ -121,7 +128,7 @@ export const initStats = (statsList, storageName) => {
       item.textContent = 0;
     });
     statsCountPercentage.forEach(item => {
-      item.textContent = '0'+'.'+'00';
+      item.textContent = 0;
     });
     localStorage.removeItem(storageName);
   })
@@ -137,9 +144,8 @@ export const gameStats = (playMode, statsList, storageName, randomWordForTrue, r
 
   function percentageUpdate(item, correct, mistakes) {
     let num = (correct / (correct + mistakes)) * 100;
-    item.percentage =  num.toFixed(2);//Math.floor(num * 100) / 100;
+    item.percentage =  Math.round(num);
   }
-
   
   statsList.forEach(item => {
     if ('word' in item) {
@@ -161,4 +167,94 @@ export const gameStats = (playMode, statsList, storageName, randomWordForTrue, r
   })
 
   localStorage.setItem(storageName, JSON.stringify(statsList))
+}
+
+export const sortStats = (storageName, statsList, topRange) => {
+  const tableHead = document.querySelectorAll('.table__head');
+  const btnPercentage = tableHead[tableHead.length - 1];
+  const btnMistakes = tableHead[tableHead.length - 2];
+  const btnCorrect = tableHead[tableHead.length - 3];
+  const btnTrain = tableHead[tableHead.length - 4];
+
+  function storageUpdate() {
+    let storageValue = localStorage.getItem(storageName);
+    statsList = JSON.parse(storageValue);
+  };
+
+  function sortCells() {
+    const wordCells = document.querySelectorAll('.word');
+    const translationCells = document.querySelectorAll('.translation');
+    const categoryCells = document.querySelectorAll('.category');
+    const trainCells = document.querySelectorAll('.train__count');
+    const correctCells = document.querySelectorAll('.correct__count');
+    const mistakesCells = document.querySelectorAll('.fail__count');
+    const percentageCells = document.querySelectorAll('.percentage__count');
+
+    for (let i = 0; i < statsList.length; i += 1) {
+      wordCells[i].textContent = statsList[i].word;
+      translationCells[i].textContent = statsList[i].translation;
+      categoryCells[i].textContent = statsList[i].category;
+      trainCells[i].textContent = statsList[i].train;
+      correctCells[i].textContent = statsList[i].correct;
+      mistakesCells[i].textContent = statsList[i].mistakes;
+      percentageCells[i].textContent = statsList[i].percentage;
+    }
+  }
+
+  btnPercentage.addEventListener('click', () => {
+    if ( localStorage.getItem(storageName) ) {
+      storageUpdate();
+      if (!topRange) {
+        statsList.sort((a, b) => a.percentage < b.percentage ? 1 : -1);
+        topRange = true;
+      } else {
+        statsList.sort((a, b) => a.percentage > b.percentage ? 1 : -1);
+        topRange = false;
+      }
+      const percentageCells = document.querySelectorAll('.percentage__count');
+      sortCells()
+    }
+  });
+
+  btnMistakes.addEventListener('click', () => {
+    if ( localStorage.getItem(storageName) ) {
+      storageUpdate();
+      if (!topRange) {
+        statsList.sort((a, b) => a.mistakes < b.mistakes ? 1 : -1);
+        topRange = true;
+      } else {
+        statsList.sort((a, b) => a.mistakes > b.mistakes ? 1 : -1);
+        topRange = false;
+      }
+      sortCells();
+    }
+  });
+
+  btnCorrect.addEventListener('click', () => {
+    if ( localStorage.getItem(storageName) ) {
+      storageUpdate();
+      if (!topRange) {
+        statsList.sort((a, b) => a.correct < b.correct ? 1 : -1);
+        topRange = true;
+      } else {
+        statsList.sort((a, b) => a.correct > b.correct ? 1 : -1);
+        topRange = false;
+      }
+      sortCells();
+    }
+  });
+
+  btnTrain.addEventListener('click', () => {
+    if ( localStorage.getItem(storageName) ) {
+      storageUpdate();
+      if (!topRange) {
+        statsList.sort((a, b) => a.train < b.train ? 1 : -1);
+        topRange = true;
+      } else {
+        statsList.sort((a, b) => a.train > b.train ? 1 : -1);
+        topRange = false;
+      }
+      sortCells();
+    }
+  })
 }

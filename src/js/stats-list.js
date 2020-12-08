@@ -6,7 +6,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'green',
@@ -15,7 +15,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'blue',
@@ -24,7 +24,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'black',
@@ -33,7 +33,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'purple',
@@ -42,7 +42,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'pink',
@@ -51,7 +51,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'brown',
@@ -60,7 +60,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'yellow',
@@ -69,7 +69,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   
   {
@@ -79,7 +79,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'basketball',
@@ -88,7 +88,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'hockey',
@@ -97,7 +97,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'volleyball',
@@ -106,7 +106,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'gymnastics',
@@ -115,7 +115,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'tennis',
@@ -124,7 +124,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'boxing',
@@ -133,7 +133,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'biathlon',
@@ -142,7 +142,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   
   {
@@ -152,7 +152,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'mother',
@@ -161,7 +161,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'brother',
@@ -170,7 +170,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'sister',
@@ -179,7 +179,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'grandad',
@@ -188,7 +188,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'granny',
@@ -197,7 +197,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'dog',
@@ -206,7 +206,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'cat',
@@ -215,7 +215,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   
   {
@@ -225,7 +225,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'tiger',
@@ -234,7 +234,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'elephant',
@@ -243,7 +243,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'squirrel',
@@ -252,7 +252,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'hippo',
@@ -261,7 +261,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'rabbit',
@@ -270,7 +270,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'bear',
@@ -279,7 +279,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'fox',
@@ -288,7 +288,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   
   {
@@ -298,7 +298,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'hand',
@@ -307,7 +307,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'arm',
@@ -316,7 +316,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'nose',
@@ -325,7 +325,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'foot',
@@ -334,7 +334,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'finger',
@@ -343,7 +343,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'stomach',
@@ -352,7 +352,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'back',
@@ -361,7 +361,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   
   {
@@ -371,7 +371,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'ice-cream',
@@ -380,7 +380,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'jam',
@@ -389,7 +389,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'cake',
@@ -398,7 +398,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'sweets',
@@ -407,7 +407,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'chocolate',
@@ -416,7 +416,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'waffles',
@@ -425,7 +425,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'juice',
@@ -434,7 +434,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   
   {
@@ -444,7 +444,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'sofa',
@@ -453,7 +453,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'chair',
@@ -462,7 +462,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'armchair',
@@ -471,7 +471,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'lamp',
@@ -480,7 +480,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'bed',
@@ -489,7 +489,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'wardrobe',
@@ -498,7 +498,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'mirror',
@@ -507,7 +507,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   
   {
@@ -517,7 +517,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'field',
@@ -526,7 +526,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'forest',
@@ -535,7 +535,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'river',
@@ -544,7 +544,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'island',
@@ -553,7 +553,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'waterfall',
@@ -562,7 +562,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'iceberg',
@@ -571,7 +571,7 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
   {
     'word': 'mountain',
@@ -580,6 +580,6 @@ export let statsList = [
     'train': '0',
     'correct': '0',
     'mistakes': '0',
-    'percentage': '0.00',
+    'percentage': '0',
   },
 ]

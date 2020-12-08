@@ -18,7 +18,7 @@ import { statsList } from './js/stats-list.js';
 import { reverseMode } from './js/reverse-mode.js';
 import { trainMode } from './js/train-mode.js';
 import { playModeOn , playChoiceSound , gameFinal } from './js/play-mode.js';
-import { initStats, gameStats } from './js/stats.js';
+import { initStats, gameStats, sortStats } from './js/stats.js';
 
 const mainContainer = document.querySelector('.container');
 const pageTitle = document.querySelector('.page-title');
@@ -56,6 +56,7 @@ const cardListView = () => {
     };
     if ( hashItem === 'stats' ) {
       initStats(statsList, storageName);
+      sortStats(storageName, statsList);
     }
   } else {
     const wordsList = new Cards(hashItem, cardsList);
