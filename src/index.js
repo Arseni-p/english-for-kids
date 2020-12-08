@@ -18,14 +18,14 @@ import { statsList } from './js/stats-list.js';
 import { reverseMode } from './js/reverse-mode.js';
 import { trainMode } from './js/train-mode.js';
 import { playModeOn , playChoiceSound , gameFinal } from './js/play-mode.js';
-import { initStats } from './js/stats.js';
+import { initStats, gameStats } from './js/stats.js';
 
 const mainContainer = document.querySelector('.container');
 const pageTitle = document.querySelector('.page-title');
 const playBtn = document.getElementById('doggo');
 const playBtnOn = document.querySelector('.play-btn');
 const pointsLimit = 8;
-
+const storageName = 'englishForKids';
 const randomIndex = [0, 1, 2, 3, 4, 5, 6, 7]
 const indexArray = [];
 const soundsArray = [];
@@ -39,7 +39,11 @@ let correctChoice;
 let indexOfTheme;
 let themeArray;
 
-const hashUpdate = () => hashItem = location.hash.slice(1)
+const hashUpdate = () => hashItem = location.hash.slice(1);
+
+const statsListStorage = () => {
+  localStorage.setItem(storageName, JSON.stringify(statsList))
+}
 
 const cardListView = () => {
   hashUpdate();
@@ -51,7 +55,7 @@ const cardListView = () => {
       mainPage();
     };
     if ( hashItem === 'stats' ) {
-      initStats(statsList);
+      initStats(statsList, storageName);
     }
   } else {
     const wordsList = new Cards(hashItem, cardsList);
@@ -96,6 +100,10 @@ const playSound = (hashItem, soundUrl) => {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  if (!localStorage.getItem(storageName)) {
+    console.log('no local. lets init');
+    statsListStorage();
+  }
   menuFunc();
   gameStart();
   cardListView();
@@ -167,6 +175,10 @@ mainContainer.addEventListener('click', (event) => {
         playChoiceSound(correctChoice);
       }
     }
+
+    const randomWordForTrue = indexArray[currentWord - 1];
+    const randomWordForFalse = indexArray[currentWord];
+    gameStats(playMode, statsList, storageName, randomWordForTrue, randomWordForFalse);
 });
 
 playBtn.addEventListener('click', () => {

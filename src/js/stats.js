@@ -1,10 +1,17 @@
 // eslint-disable-next-line import/prefer-default-export
-export const initStats = (statsList) => {
+export const initStats = (statsList, storageName) => {
+
+  if (localStorage.getItem(storageName)) {
+    let storageValue = localStorage.getItem(storageName);
+    statsList = JSON.parse(storageValue);
+    console.log(statsList)
+  }
+  
   const buttonsNumber = 2;
   const buttonClasses = [
     {
       'class': 'stats-btn__top',
-      'text': 'play top',
+      'text': 'repeat top',
     },
     {
       'class': 'stats-btn__reset',
@@ -40,15 +47,19 @@ export const initStats = (statsList) => {
         break;
       case 4:
         item.textContent = statsList[index - 1].train;
+        item.classList.add('stats__count');
         break;
       case 5:
         item.textContent = statsList[index - 1].correct;
+        item.classList.add('stats__count');
         break;
       case 6:
         item.textContent = statsList[index - 1].mistakes;
+        item.classList.add('stats__count');
         break;
       case 7:
         item.textContent = statsList[index - 1].percentage;
+        item.classList.add('stats__count--percentage');
         break;
     }
   }
@@ -101,4 +112,53 @@ export const initStats = (statsList) => {
       }
     }
   }
+  
+  const btnReset = document.querySelector('.stats-btn__reset');
+  btnReset.addEventListener('click', () => {
+    const statsCount = document.querySelectorAll('.stats__count');
+    const statsCountPercentage = document.querySelectorAll('.stats__count--percentage');
+    statsCount.forEach(item => {
+      item.textContent = 0;
+    });
+    statsCountPercentage.forEach(item => {
+      item.textContent = '0'+'.'+'00';
+    });
+    localStorage.removeItem(storageName);
+  })
+}
+
+export const gameStats = (playMode, statsList, storageName, randomWordForTrue, randomWordForFalse) => {
+  const currentWordValue = event.target.closest('.card__item').querySelector('.item__value--text').textContent;
+
+  if (localStorage.getItem(storageName)) {
+    let storageValue = localStorage.getItem(storageName);
+    statsList = JSON.parse(storageValue);
+  }
+
+  function percentageUpdate(item, correct, mistakes) {
+    let num = (correct / (correct + mistakes)) * 100;
+    item.percentage =  num.toFixed(2);//Math.floor(num * 100) / 100;
+  }
+
+  
+  statsList.forEach(item => {
+    if ('word' in item) {
+      if ( !playMode && currentWordValue === item.word ) {
+        item.train = +item.train + 1;
+      };
+      if ( playMode && document.querySelector('.repeat__on') ) {
+        if ( currentWordValue === item.word && currentWordValue === randomWordForTrue ) {
+          item.correct = +item.correct + 1;
+          percentageUpdate(item, +item.correct, +item.mistakes);
+        };
+        if ( randomWordForFalse === item.word && currentWordValue !== randomWordForTrue ) {
+          item.mistakes = +item.mistakes + 1;
+          percentageUpdate(item, +item.correct, +item.mistakes);
+          
+        }
+      }
+    }
+  })
+
+  localStorage.setItem(storageName, JSON.stringify(statsList))
 }
