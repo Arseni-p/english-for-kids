@@ -19,10 +19,13 @@ import { reverseMode } from './js/reverse-mode.js';
 import { trainMode } from './js/train-mode.js';
 import { playModeOn , playChoiceSound , gameFinal } from './js/play-mode.js';
 import { initStats, gameStats, sortStats } from './js/stats.js';
+import { initRepeat } from './js/repeat-words.js';
+
 
 const mainContainer = document.querySelector('.container');
 const pageTitle = document.querySelector('.page-title');
 const playBtn = document.getElementById('doggo');
+const playBtnOnWrap = document.querySelector('.play-btn__wrap');
 const playBtnOn = document.querySelector('.play-btn');
 const pointsLimit = 8;
 const storageName = 'englishForKids';
@@ -47,8 +50,8 @@ const statsListStorage = () => {
 
 const cardListView = () => {
   hashUpdate();
-  if ( (hashItem === 'main-page' || hashItem === '') || hashItem === 'stats') {
-    if ( document.querySelector('.points') ) {
+  if ( (hashItem === 'main-page' || hashItem === '') || hashItem === 'stats' || hashItem === 'repeat') {
+    if ( document.querySelector('.points') && hashItem !== 'repeat' ) {
       document.querySelector('.points').remove();
     };
     if ( hashItem === 'main-page' || hashItem === '' ) {
@@ -57,6 +60,9 @@ const cardListView = () => {
     if ( hashItem === 'stats' ) {
       initStats(statsList, storageName);
       sortStats(storageName, statsList);
+    };
+    if ( hashItem === 'repeat' ) {
+      initRepeat();
     }
   } else {
     const wordsList = new Cards(hashItem, cardsList);
@@ -113,6 +119,13 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('hashchange', () => {
   const currList = document.querySelector('.card__list');
   const currStats = document.querySelector('.stats__wrapper');
+  /*const playText = document.querySelecto('.play-mode');
+  const trainText = document.querySelecto('.train-mode');
+  
+  if (playText.classList.contains('active-mode')) {
+    playText.classList.remove('active-mode');
+    trainText.classList.add('active-mode');
+  };*/
   if (currList) {
     currList.classList.add('item__off');
   };
@@ -191,7 +204,7 @@ playBtn.addEventListener('click', () => {
   }
 });
 
-playBtnOn.addEventListener('click', () => {
+playBtnOnWrap.addEventListener('click', () => {
   if ( !playModeSound ) {
     window.scrollTo(0, pageTitle.offsetTop);
     let i = 0;
@@ -211,4 +224,6 @@ playBtnOn.addEventListener('click', () => {
     playModeSound = true;
   }
   playSound();
-})
+});
+
+

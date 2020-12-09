@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/prefer-default-export
 export const initStats = (statsList, storageName) => {
-
   if (localStorage.getItem(storageName)) {
     let storageValue = localStorage.getItem(storageName);
     statsList = JSON.parse(storageValue);
@@ -131,6 +130,32 @@ export const initStats = (statsList, storageName) => {
       item.textContent = 0;
     });
     localStorage.removeItem(storageName);
+  })
+
+  const repeatTopBtn = document.querySelector('.stats-btn__top');
+  repeatTopBtn.addEventListener('click', () => {
+    const repeatStorage = 'repeatStorage';
+    if (localStorage.getItem(storageName)) {
+      let storageValue = localStorage.getItem(storageName);
+      statsList = JSON.parse(storageValue);
+    }
+    const currList = statsList;
+    currList.forEach(item => {
+      if (item.mistakes !== 0 && item.mistakes !== '0') {
+        item.percentage = 100 - item.percentage;
+      }
+    })
+    currList.sort((a, b) => a.percentage < b.percentage ? 1 : -1)
+    let repeatList = [];
+    let repeatListLength = 8;
+    for (let i = 0; i < repeatListLength; i += 1) {
+      if (parseInt(currList[i].percentage) !== 0) {
+        repeatList.push(currList[i])
+      }
+    };
+    console.log(currList)
+    localStorage.setItem(repeatStorage, JSON.stringify(repeatList))
+    location.hash = 'repeat';
   })
 }
 
