@@ -45,7 +45,6 @@ export const playChoiceSound = (correctChoice) => {
   } else {
     playErrorOn();
   };
-
   createStar();
 }
 
@@ -53,6 +52,7 @@ export const gameFinal = (mistakes) => {
   const finalMessage = document.querySelector('.final-message');
   const mistakesCount = document.querySelector('.mistakes__count');
   const plural = document.querySelector('.plural');
+  
   if ( mistakes === 1 ) {
     plural.textContent = '';
   } else {

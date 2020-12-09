@@ -86,7 +86,9 @@ const cardListView = () => {
     }
     
     currentLink = menuLinkList[currentNumber];
-    currentLink.classList.add('current__link');
+    if (currentLink) {
+      currentLink.classList.add('current__link');
+    }
   }
 }
 
@@ -108,7 +110,6 @@ const playSound = (hashItem, soundUrl) => {
 
 document.addEventListener('DOMContentLoaded', () => {
   if (!localStorage.getItem(storageName)) {
-    console.log('no local. lets init');
     statsListStorage();
   }
   menuFunc();
@@ -119,13 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('hashchange', () => {
   const currList = document.querySelector('.card__list');
   const currStats = document.querySelector('.stats__wrapper');
-  /*const playText = document.querySelecto('.play-mode');
-  const trainText = document.querySelecto('.train-mode');
-  
-  if (playText.classList.contains('active-mode')) {
-    playText.classList.remove('active-mode');
-    trainText.classList.add('active-mode');
-  };*/
   if (currList) {
     currList.classList.add('item__off');
   };
@@ -158,13 +152,19 @@ window.addEventListener('hashchange', () => {
 
 mainContainer.addEventListener('click', (event) => {
   hashUpdate();
-  const currentCard = event.target.closest('.card__item').querySelector('.item__value--text').textContent;
+  let currentCard;
+  const currentCardItem = event.target.closest('.card__item');
+  
+  if (currentCardItem && currentCardItem.querySelector('.item__value--text')) {
+    currentCard = currentCardItem.querySelector('.item__value--text').textContent;
+  }
+  
   const choiceItem = event.target.closest('.card__item');
 
   if ( !playMode ) {
     reverseMode(event, cardsList, hashItem);
     trainMode(event, cardsList, hashItem)
-  } else if ( playModeSound && currentCard === indexArray[currentWord] && !choiceItem.classList.contains('correct__item') ) {
+  } else if ( playModeSound && currentCard === indexArray[currentWord] && choiceItem && !choiceItem.classList.contains('correct__item') ) {
       correctChoice = true;
       points += 1;
       currentWord += 1;
@@ -184,7 +184,7 @@ mainContainer.addEventListener('click', (event) => {
       } 
     } else {
       correctChoice = false;
-      if ( document.querySelector('.repeat__on') && !choiceItem.classList.contains('correct__item') ) {
+      if ( document.querySelector('.repeat__on') && choiceItem && !choiceItem.classList.contains('correct__item') ) {
         mistakes += 1;
         playChoiceSound(correctChoice);
       }

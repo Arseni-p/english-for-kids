@@ -1,6 +1,9 @@
 export const trainMode = (event, cardsList, hashItem) => {
   const cardItem = event.target.closest('.card__item');
-  const cardName = cardItem.querySelector('.item__value--text').textContent;
+  let cardName;
+  if (cardItem && cardItem.querySelector('.item__value--text')) {
+    cardName = cardItem.querySelector('.item__value--text').textContent;
+  }
   const indexOfItem = cardsList[0].indexOf(hashItem) + 1;
   const itemArray = cardsList[indexOfItem];
   let soundUrl;
@@ -26,7 +29,7 @@ export const trainMode = (event, cardsList, hashItem) => {
     wordSoundPlay();
   }
 
-  if ( cardItem ) {
+  if ( cardItem && soundUrl ) {
     soundPlay();
   }
 }

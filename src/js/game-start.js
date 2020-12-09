@@ -9,7 +9,7 @@ export const gameStart = () => {
     const correctItems = document.querySelectorAll('.correct__item');
     const starsList = document.querySelector('.points__wrapper');
 
-    if ( starsList.querySelector('.star') ) {
+    if ( starsList && starsList.querySelector('.star') ) {
       starsList.innerHTML = '';
     }
 

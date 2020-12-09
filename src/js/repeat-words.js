@@ -1,5 +1,7 @@
 // eslint-disable-next-line import/prefer-default-export
 export const initRepeat = () => {
+  const trainModeText = document.querySelector('.train-mode');
+  const playModeText = document.querySelector('.play-mode');
   const repeatStorage = 'repeatStorage';
   const currStorage =  localStorage.getItem(repeatStorage)
   const repeatList = JSON.parse(currStorage);
@@ -9,12 +11,16 @@ export const initRepeat = () => {
     'mistakes':'repeat',
   };
 
-  if (repeatList.length === 0) {
+  if (playModeText.classList.contains('active-mode')) {
+    playModeText.classList.remove('active-mode');
+    trainModeText.classList.add('active-mode');
+  };
+  if ( repeatList.length === 0 && !repeatList[0] ) {
+    console.log(repeatList)
     return pageTitle.textContent = message.nomistakes;
   } else {
     pageTitle.textContent = message.mistakes;
   }
-  console.log(repeatList, repeatList.length)
   const mainContainer = document.querySelector('.container');
   const switcher = document.getElementById('doggo');
   switcher.checked = false;
@@ -73,11 +79,12 @@ export const initRepeat = () => {
   }
 
   mainMenuList.addEventListener('click', (event) => {
-    const itemText = document.querySelector('.item__value--text');
     const cardItem = event.target.closest('.card__item');
-    const reversBtn = event.target.classList.contains('item__reverse-btn');
+    let cardName;
     if ( trainMode ) {
-      const cardName = cardItem.querySelector('.item__value--text').textContent;
+      if (cardItem) {
+        cardName = cardItem.querySelector('.item__value--text').textContent;
+      }
       repeatList.forEach(item => {
         if (cardName === item.word) {
           soundPlay(item.category, cardName);

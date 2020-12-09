@@ -206,6 +206,7 @@ input:checked + label {
   width: 80px;
   height: 40px;
   overflow: hidden;
+  z-index: 100;
 }
 
 @keyframes play-btn--on {

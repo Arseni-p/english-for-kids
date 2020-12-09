@@ -104,6 +104,9 @@ export const initStats = (statsList, storageName) => {
         tableCell = document.createElement('td')
       };
       tableCell.classList.add('table__cell');
+      if (i > 0 && j === 0) {
+        tableCell.classList.add('numb');
+      }
       tableRow.append(tableCell);
 
       if (i === 0) {
@@ -130,7 +133,7 @@ export const initStats = (statsList, storageName) => {
       item.textContent = 0;
     });
     localStorage.removeItem(storageName);
-  })
+  });
 
   const repeatTopBtn = document.querySelector('.stats-btn__top');
   repeatTopBtn.addEventListener('click', () => {
@@ -138,29 +141,33 @@ export const initStats = (statsList, storageName) => {
     if (localStorage.getItem(storageName)) {
       let storageValue = localStorage.getItem(storageName);
       statsList = JSON.parse(storageValue);
-    }
+    };
     const currList = statsList;
     currList.forEach(item => {
-      if (item.mistakes !== 0 && item.mistakes !== '0') {
-        item.percentage = 100 - item.percentage;
+      if ( parseInt(item.mistakes) > 0 || (parseInt(item.correct) > 0 && parseInt(item.percentage) === 100) ) {
+        item.percentage = 100 - parseInt(item.percentage);
       }
     })
-    currList.sort((a, b) => a.percentage < b.percentage ? 1 : -1)
+    currList.sort((a, b) => a.percentage < b.percentage ? 1 : -1);
+    console.log('!!!', currList)
     let repeatList = [];
     let repeatListLength = 8;
     for (let i = 0; i < repeatListLength; i += 1) {
-      if (parseInt(currList[i].percentage) !== 0) {
+      if (parseInt(currList[i].mistakes) > 0 ) {
         repeatList.push(currList[i])
       }
     };
-    console.log(currList)
     localStorage.setItem(repeatStorage, JSON.stringify(repeatList))
     location.hash = 'repeat';
   })
 }
 
 export const gameStats = (playMode, statsList, storageName, randomWordForTrue, randomWordForFalse) => {
-  const currentWordValue = event.target.closest('.card__item').querySelector('.item__value--text').textContent;
+  let currentWordValue;
+  const currentWordValueItem = event.target.closest('.card__item');
+  if (currentWordValueItem && currentWordValueItem.querySelector('.item__value--text')) {
+    currentWordValue = currentWordValueItem.querySelector('.item__value--text').textContent;
+  } 
 
   if (localStorage.getItem(storageName)) {
     let storageValue = localStorage.getItem(storageName);
@@ -200,6 +207,10 @@ export const sortStats = (storageName, statsList, topRange) => {
   const btnMistakes = tableHead[tableHead.length - 2];
   const btnCorrect = tableHead[tableHead.length - 3];
   const btnTrain = tableHead[tableHead.length - 4];
+  const btnNumb = tableHead[tableHead.length - 8];
+  const btnWord = tableHead[tableHead.length - 7];
+  const btnTranslation = tableHead[tableHead.length - 6];
+  const btnCategory = tableHead[tableHead.length - 5];
 
   function storageUpdate() {
     let storageValue = localStorage.getItem(storageName);
@@ -281,5 +292,70 @@ export const sortStats = (storageName, statsList, topRange) => {
       }
       sortCells();
     }
-  })
+  });
+
+  btnNumb.addEventListener('click', () => {
+    const numbersNodeList = document.querySelectorAll('.numb');
+    const numbersList = [];
+    numbersNodeList.forEach(item => {
+      numbersList.push(item.textContent);
+    });
+    if ( localStorage.getItem(storageName) ) {
+      storageUpdate();
+      if (!topRange) {
+        statsList.sort((a, b) => statsList.indexOf(a) < statsList.indexOf(b) ? 1 : -1);
+        numbersList.sort((a, b) => +a < +b ? 1 : -1);
+        topRange = true;
+      } else {
+        statsList.sort((a, b) => statsList.indexOf(a) > statsList.indexOf(b) ? 1 : -1);
+        numbersList.sort((a, b) => +a > +b ? 1 : -1);
+        topRange = false;
+      }
+      sortCells();
+      let currIndex = 0;
+      numbersNodeList.forEach(item => {
+        item.textContent = numbersList[currIndex];
+        currIndex += 1;
+      })
+    }
+  });
+  btnWord.addEventListener('click', () => {
+    if ( localStorage.getItem(storageName) ) {
+      storageUpdate();
+      if (!topRange) {
+        statsList.sort((a, b) => a.word < b.word ? 1 : -1);
+        topRange = true;
+      } else {
+        statsList.sort((a, b) => a.word > b.word ? 1 : -1);
+        topRange = false;
+      }
+      sortCells();
+    }
+  });
+  btnTranslation.addEventListener('click', () => {
+    if ( localStorage.getItem(storageName) ) {
+      storageUpdate();
+      if (!topRange) {
+        statsList.sort((a, b) => a.translation < b.translation ? 1 : -1);
+        topRange = true;
+      } else {
+        statsList.sort((a, b) => a.translation > b.translation ? 1 : -1);
+        topRange = false;
+      }
+      sortCells();
+    }
+  });
+  btnCategory.addEventListener('click', () => {
+    if ( localStorage.getItem(storageName) ) {
+      storageUpdate();
+      if (!topRange) {
+        statsList.sort((a, b) => a.category < b.category ? 1 : -1);
+        topRange = true;
+      } else {
+        statsList.sort((a, b) => a.category > b.category ? 1 : -1);
+        topRange = false;
+      }
+      sortCells();
+    }
+  });
 }
