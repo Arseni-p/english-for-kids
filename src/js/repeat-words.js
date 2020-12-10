@@ -16,7 +16,6 @@ export const initRepeat = () => {
     trainModeText.classList.add('active-mode');
   };
   if ( repeatList.length === 0 && !repeatList[0] ) {
-    console.log(repeatList)
     return pageTitle.textContent = message.nomistakes;
   } else {
     pageTitle.textContent = message.mistakes;
@@ -41,6 +40,7 @@ export const initRepeat = () => {
   for (let i = 0; i < repeatList.length; i += 1) {
     const cardItem = document.createElement('li');
     cardItem.className = 'card__item';
+    cardItem.classList.add('repeat__item')
     mainMenuList.append(cardItem);
 
     const cardItemImg = document.createElement('div');
@@ -92,5 +92,18 @@ export const initRepeat = () => {
       });
     };
   });
-};
+/*
+  const reversBtnList = document.querySelectorAll('.item__reverse-btn');
+  const repeatWordList = document.querySelectorAll('.item__value--text');
+  const reversBtnArray = [];
+  repeatWordList.forEach(item => {
+    reversBtnArray.push(item.textContent);
+  })
+  console.log(repeatWordList, reversBtnArray);
+  repeatWordList.forEach(item => {
+    item.addEventListener('click', (event) => {
+      console.log(event.target, item.textContent)
 
+  })
+});*/
+}

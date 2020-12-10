@@ -149,7 +149,6 @@ export const initStats = (statsList, storageName) => {
       }
     })
     currList.sort((a, b) => a.percentage < b.percentage ? 1 : -1);
-    console.log('!!!', currList)
     let repeatList = [];
     let repeatListLength = 8;
     for (let i = 0; i < repeatListLength; i += 1) {

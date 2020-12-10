@@ -1,4 +1,7 @@
 export const reverseMode = (event, cardsList, hashItem) => {
+  const repeatStorage = 'repeatStorage';
+  let currStorage;
+  let repeatList;
   let cardItem;
   let cardNameWrap ;
   let cardName;
@@ -17,20 +20,34 @@ export const reverseMode = (event, cardsList, hashItem) => {
 
   if ( reverseBtn ) {
     cardItem = event.target.closest('.card__item');
-    cardItem.classList.add('card__item--reverse');
+    if (cardItem) {
+      cardItem.classList.add('card__item--reverse');
+    }
     reverseMode = true;
-      
+    if (cardItem.classList.contains('repeat__item')) {
+      currStorage = localStorage.getItem(repeatStorage);
+      repeatList = JSON.parse(currStorage);
+    }
+
     itemArray.forEach(item => {
       if ( cardName.textContent === item.word ) {
-        cardName.textContent = item.translation
-      }
+        cardName.textContent = item.translation;
+      };
     })
+
+    if (cardItem.classList.contains('repeat__item')) {
+      repeatList.forEach(item => {
+        if (cardName.textContent === item.word) {
+          cardName.textContent = item.translation;
+        }
+      })
+    }
   }
 
   if ( reverseMode )  {
     cardItem.addEventListener('mouseleave', () => {
       cardItem.classList.remove('card__item--reverse');
       cardName.textContent = currEnglCard;
-    }) 
+    })
   }
 }

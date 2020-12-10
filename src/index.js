@@ -29,6 +29,7 @@ const playBtnOnWrap = document.querySelector('.play-btn__wrap');
 const playBtnOn = document.querySelector('.play-btn');
 const pointsLimit = 8;
 const storageName = 'englishForKids';
+const repeatPage = 'repeat';
 const randomIndex = [0, 1, 2, 3, 4, 5, 6, 7]
 const indexArray = [];
 const soundsArray = [];
@@ -50,8 +51,8 @@ const statsListStorage = () => {
 
 const cardListView = () => {
   hashUpdate();
-  if ( (hashItem === 'main-page' || hashItem === '') || hashItem === 'stats' || hashItem === 'repeat') {
-    if ( document.querySelector('.points') && hashItem !== 'repeat' ) {
+  if ( (hashItem === 'main-page' || hashItem === '') || hashItem === 'stats' || hashItem === repeatPage) {
+    if ( document.querySelector('.points') && hashItem !== repeatPage ) {
       document.querySelector('.points').remove();
     };
     if ( hashItem === 'main-page' || hashItem === '' ) {
@@ -61,7 +62,7 @@ const cardListView = () => {
       initStats(statsList, storageName);
       sortStats(storageName, statsList);
     };
-    if ( hashItem === 'repeat' ) {
+    if ( hashItem === repeatPage ) {
       initRepeat();
     }
   } else {
@@ -85,8 +86,12 @@ const cardListView = () => {
       currentNumber = 0
     }
     
+    const statsNumber = 9;
     currentLink = menuLinkList[currentNumber];
     if (currentLink) {
+      currentLink.classList.add('current__link');
+    } else {
+      currentLink = menuLinkList[statsNumber];
       currentLink.classList.add('current__link');
     }
   }
@@ -141,7 +146,7 @@ window.addEventListener('hashchange', () => {
     if (currStats) {
       currStats.remove();
     };
-    if (document.querySelector('.points')) {
+    if (document.querySelector('.points') && hashItem !== repeatPage ) {
       document.querySelector('.points').remove();
     };
   }, 400);
