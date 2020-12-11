@@ -8,7 +8,6 @@ import './css/start-page.css';
 import './css/switcher.css';
 import './css/stats.css';
 
-
 import { menuFunc } from './js/menu.js';
 import { gameStart } from './js/game-start.js';
 import { mainPage } from './js/main-page.js';
@@ -21,7 +20,6 @@ import { playModeOn , playChoiceSound , gameFinal } from './js/play-mode.js';
 import { initStats, gameStats, sortStats } from './js/stats.js';
 import { initRepeat } from './js/repeat-words.js';
 
-
 const mainContainer = document.querySelector('.container');
 const pageTitle = document.querySelector('.page-title');
 const playBtn = document.getElementById('doggo');
@@ -29,6 +27,8 @@ const playBtnOnWrap = document.querySelector('.play-btn__wrap');
 const playBtnOn = document.querySelector('.play-btn');
 const pointsLimit = 8;
 const storageName = 'englishForKids';
+const mainPageHash = 'main-page';
+const statsPage = 'stats';
 const repeatPage = 'repeat';
 const randomIndex = [0, 1, 2, 3, 4, 5, 6, 7]
 const indexArray = [];

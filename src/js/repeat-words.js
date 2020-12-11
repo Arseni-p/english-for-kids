@@ -19,11 +19,11 @@ export const initRepeat = () => {
     return pageTitle.textContent = message.nomistakes;
   } else {
     pageTitle.textContent = message.mistakes;
-  }
+  };
   const mainContainer = document.querySelector('.container');
   const switcher = document.getElementById('doggo');
   switcher.checked = false;
-  switcher.removeAttribute('disabled');
+  switcher.setAttribute('disabled', 'disabled');
 
   const points = document.createElement('div');
   const pointsWrapper = document.createElement('div');
@@ -92,18 +92,4 @@ export const initRepeat = () => {
       });
     };
   });
-/*
-  const reversBtnList = document.querySelectorAll('.item__reverse-btn');
-  const repeatWordList = document.querySelectorAll('.item__value--text');
-  const reversBtnArray = [];
-  repeatWordList.forEach(item => {
-    reversBtnArray.push(item.textContent);
-  })
-  console.log(repeatWordList, reversBtnArray);
-  repeatWordList.forEach(item => {
-    item.addEventListener('click', (event) => {
-      console.log(event.target, item.textContent)
-
-  })
-});*/
 }
